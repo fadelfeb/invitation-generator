@@ -418,7 +418,7 @@
                 template = template.replace(/<span class="link">\[nama\]<\/span>/g, guestName);
                 
                 // Replace [link-undangan] with a dummy link
-                template = template.replace(/<span class="link">\[link-undangan\]<\/span>/g,  linkTo);
+                template = template.replace(/<span class="link">\[link-undangan\]<\/span>/g,  encodeURI(linkTo));
                 
                 // Strip HTML tags for plain text
                 return template.replace(/<[^>]*>/g, '');
