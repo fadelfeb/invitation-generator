@@ -370,7 +370,7 @@
                         const message = getMessageForGuest(name.trim(),linkTo);
                         // Create WhatsApp web API URL (wa.me)
                         const encodedMessage = encodeURIComponent(message);
-                        const waURL = `https://wa.me/?text=${encodedMessage}`;
+                        const waURL = `https://api.whatsapp.com/send?text=${encodedMessage}`;
                         // Open WhatsApp in a new tab
                         window.open(waURL, '_blank');
                     });
