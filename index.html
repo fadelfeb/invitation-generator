@@ -209,12 +209,28 @@
                 </div>
             </div>
             
-            <div class="template-preview">
-                <p>Dengan hormat,</p>
-                <p>Kami bermaksud untuk mengundang Bapak/Ibu/Saudara/i <span class="link">[nama]</span> untuk menghadiri acara kami.</p>
-                <p>*Berikut <span class="link">link</span> undangan kami*, untuk info lengkap dari acara bisa kunjungi :</p>
+            <div class="template-preview" contenteditable="true" id="template-preview">
+                <span>Dengan hormat,</span>
+<p>Kami berdua, Sri Handayani dan Andri Nurhadi, dengan sukacita mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+<span>Tanggal: 01 Juni 2025</span>
+<p>Waktu: 13.00 WIB</p>
+<p>Kami berharap Bapak/Ibu/Saudara/i dapat hadir dan memberikan doa restu agar pernikahan kami menjadi sakinah, mawaddah, dan rahmah.</p>
+<span>Informasi lebih lanjut dapat diakses melalui link: </span>
+<p><span class="link">[link-undangan]</span></p>
+<p>Terima kasih atas perhatian dan kehadirannya.</p>
+<span>Hormat kami,</span>
+<span>Sri Handayani dan Andri Nurhadi</span>`,
+                
+                muslim: `<p>Dengan hormat,</p>
+                <p>Kami berdua, Sri Handayani dan Andri Nurhadi, dengan sukacita mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+                <span>Tanggal: 01 Juni 2025</span>
+                <p>Waktu: 13.00 WIB</p>
+                <p>Kami berharap Bapak/Ibu/Saudara/i dapat hadir dan memberikan doa restu agar pernikahan kami menjadi sakinah, mawaddah, dan rahmah.</p>
+                <span>Informasi lebih lanjut dapat diakses melalui link: </span>
                 <p><span class="link">[link-undangan]</span></p>
-                <p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.</p>
+                <p>Terima kasih atas perhatian dan kehadirannya.</p>
+                <span>Hormat kami,</span>
+                <span>Sri Handayani dan Andri Nurhadi</span>
             </div>
         </div>
         
@@ -245,22 +261,55 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Template selection functionality
             const linkUndangan = "https://by.galipatstory.com/srihay-andrin/?to="
+
+            
             const buttons = document.querySelectorAll('.template-selector button');
             const templatePreview = document.querySelector('.template-preview');
+
+            // Handle Enter key properly in contenteditable
+            templatePreview.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    // Insert <br> tag instead of default behavior
+                    e.preventDefault();
+                    
+                    // Insert line break
+                    const selection = window.getSelection();
+                    const range = selection.getRangeAt(0);
+                    const br = document.createElement('br');
+                    range.deleteContents();
+                    range.insertNode(br);
+                    
+                    // Move cursor after the break
+                    range.setStartAfter(br);
+                    range.setEndAfter(br);
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+                }
+            });
             
             const templates = {
                 formal: `<p>Dengan hormat,</p>
-<p>Kami bermaksud untuk mengundang Bapak/Ibu/Saudara/i <span class="link">[nama]</span> untuk menghadiri acara kami.</p>
-<p>*Berikut <span class="link">link</span> undangan kami*, untuk info lengkap dari acara bisa kunjungi :</p>
+<p>Kami berdua, Sri Handayani dan Andri Nurhadi, dengan sukacita mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami.</p>
+<span>Tanggal: 01 Juni 2025</span>
+<p>Waktu: 13.00 WIB</p>
+<p>Kami berharap Bapak/Ibu/Saudara/i dapat hadir dan memberikan doa restu agar pernikahan kami menjadi sakinah, mawaddah, dan rahmah.</p>
+<span>Informasi lebih lanjut dapat diakses melalui link: </span>
 <p><span class="link">[link-undangan]</span></p>
-<p>Merupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.</p>`,
+<p>Terima kasih atas perhatian dan kehadirannya.</p>
+<span>Hormat kami,</span>
+<span>Sri Handayani dan Andri Nurhadi</span>`,
                 
-                muslim: `<p>Assalamualaikum Wr. Wb.</p>
-<p>Dengan rahmat Allah SWT, kami mengundang Bapak/Ibu/Saudara/i <span class="link">[nama]</span> untuk menghadiri acara pernikahan kami.</p>
-<p>*Berikut <span class="link">link</span> undangan kami*, untuk info lengkap dari acara bisa kunjungi :</p>
+                muslim: `<span>Bismillahirrahmanirrahim</span>
+<p>Assalamu'alaikum Wr. Wb.</p>
+<p>Dengan mengharap ridho Allah SWT, kami berdua, Sri Handayani dan Andri Nurhadi dengan sukacita mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami yang Insya Allah akan dilaksanakan pada:</p>
+<span>Tanggal: 01 Juni 2025</span>
+<p>Waktu: 13.00 WIB</p>
+<p>Kami berharap Bapak/Ibu/Saudara/i dapat hadir dan memberikan doa restu agar pernikahan kami menjadi sakinah, mawaddah, dan rahmah.</p>
+<span>Informasi lebih lanjut dapat diakses melalui link: </span>
 <p><span class="link">[link-undangan]</span></p>
-<p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.</p>
-<p>Wassalamualaikum Wr. Wb.</p>`,
+<p>Wassalamualaikum Wr. Wb.</p>
+<span>Kami yang Berbahagia</span>
+<p>Sri Handayani dan Andri Nurhadi</p>`,
                 
                 nasrani: `<p>Puji Tuhan,</p>
 <p>Dengan sukacita kami mengundang Bapak/Ibu/Saudara/i <span class="link">[nama]</span> untuk menghadiri acara pemberkatan kami.</p>
@@ -419,9 +468,24 @@
                 
                 // Replace [link-undangan] with a dummy link
                 template = template.replace(/<span class="link">\[link-undangan\]<\/span>/g,  encodeURI(linkTo));
+
+                    // Convert <br> and <p> tags to line breaks for plain text
+                template = template.replace(/<br\s*\/?>/gi, '\n');
+                template = template.replace(/<\/p><p>/gi, '\n\n');
+                template = template.replace(/<p>/gi, '');
+                template = template.replace(/<\/p>/gi, '\n');
+                
+                // Strip remaining HTML tags for plain text
+                let plainText = template.replace(/<[^>]*>/g, '');
+                
+                // Remove tabs specifically while preserving line breaks
+                plainText = plainText.replace(/\t/g, '');
+                
+                // Fix any HTML entities
+                plainText = plainText.replace(/&nbsp;/g, ' ');
                 
                 // Strip HTML tags for plain text
-                return template.replace(/<[^>]*>/g, '');
+                return plainText;
             }
         });
     </script>
